@@ -28,7 +28,7 @@ RUN set -ex && \
 
 EXPOSE 8125/udp 8092/udp 8094
 
-COPY telegraf.conf /config/telegraf_custom.conf
+COPY telegraf_custom.conf /config/
 COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
