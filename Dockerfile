@@ -18,7 +18,7 @@ RUN set -ex && \
     wget -q https://dl.influxdata.com/telegraf/releases/telegraf-${TELEGRAF_VERSION}-static_linux_amd64.tar.gz.asc && \
     wget -q https://dl.influxdata.com/telegraf/releases/telegraf-${TELEGRAF_VERSION}-static_linux_amd64.tar.gz && \
     gpg --batch --verify telegraf-${TELEGRAF_VERSION}-static_linux_amd64.tar.gz.asc telegraf-${TELEGRAF_VERSION}-static_linux_amd64.tar.gz && \
-    mkdir -p /usr/src /etc/telegraf /config/ && \
+    mkdir -p /usr/src /etc/telegraf /config && \
     tar -C /usr/src -xzf telegraf-${TELEGRAF_VERSION}-static_linux_amd64.tar.gz && \
     mv /usr/src/telegraf*/telegraf.conf /etc/telegraf/ && \
     chmod +x /usr/src/telegraf*/* && \
@@ -26,9 +26,13 @@ RUN set -ex && \
     rm -rf *.tar.gz* /usr/src /root/.gnupg && \
     apk del .build-deps
 
-EXPOSE 8125/udp 8092/udp 8094
 
 COPY telegraf_custom.conf /config/
+
+VOLUME /config/
+
+EXPOSE 8125/udp 8092/udp 8094
+
 COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
