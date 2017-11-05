@@ -4,7 +4,7 @@ RUN echo 'hosts: files dns' >> /etc/nsswitch.conf
 RUN apk add --no-cache iputils lm_sensors tzdata ca-certificates net-snmp-tools && \
     update-ca-certificates
 
-ENV TELEGRAF_VERSION 1.4.2
+ENV TELEGRAF_VERSION 1.4.3
 
 COPY entrypoint.sh /entrypoint.sh
 
