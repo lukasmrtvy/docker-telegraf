@@ -1,7 +1,7 @@
 FROM alpine:3.6
 
 RUN echo 'hosts: files dns' >> /etc/nsswitch.conf
-RUN apk add --no-cache iputils lm_sensors tzdata ca-certificates net-snmp-tools ruby2.2 && \
+RUN apk add --no-cache iputils lm_sensors tzdata ca-certificates net-snmp-tools ruby2.2 ruby2.2-json && \
     update-ca-certificates
 
 ENV TELEGRAF_VERSION 1.4.4
