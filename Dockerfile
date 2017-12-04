@@ -29,8 +29,6 @@ RUN set -ex && \
     rm -rf *.tar.gz* /usr/src /root/.gnupg && \
     apk del .build-deps
 
-https://raw.githubusercontent.com/benningm/docker-telegraf-netatmo/master/netatmo
-
 COPY telegraf_custom.conf /config/
 
 VOLUME /config/
