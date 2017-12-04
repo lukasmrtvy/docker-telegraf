@@ -20,7 +20,6 @@ RUN set -ex && \
     done && \
     wget -q https://dl.influxdata.com/telegraf/releases/telegraf-${TELEGRAF_VERSION}-static_linux_amd64.tar.gz.asc && \
     wget -q https://dl.influxdata.com/telegraf/releases/telegraf-${TELEGRAF_VERSION}-static_linux_amd64.tar.gz && \
-    #wget -O /usr/local/bin/netatmo https://raw.githubusercontent.com/benningm/docker-telegraf-netatmo/master/netatmo && \
     gpg --batch --verify telegraf-${TELEGRAF_VERSION}-static_linux_amd64.tar.gz.asc telegraf-${TELEGRAF_VERSION}-static_linux_amd64.tar.gz && \
     mkdir -p /usr/src /etc/telegraf /config && \
     tar -C /usr/src -xzf telegraf-${TELEGRAF_VERSION}-static_linux_amd64.tar.gz && \
