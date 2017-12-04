@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 RUN echo 'hosts: files dns' >> /etc/nsswitch.conf
-RUN apk add --no-cache iputils lm_sensors tzdata ca-certificates net-snmp-tools && \
+RUN apk add --no-cache iputils lm_sensors tzdata ca-certificates net-snmp-tools ruby2.2 && \
     update-ca-certificates
 
 ENV TELEGRAF_VERSION 1.4.4
@@ -19,6 +19,7 @@ RUN set -ex && \
     done && \
     wget -q https://dl.influxdata.com/telegraf/releases/telegraf-${TELEGRAF_VERSION}-static_linux_amd64.tar.gz.asc && \
     wget -q https://dl.influxdata.com/telegraf/releases/telegraf-${TELEGRAF_VERSION}-static_linux_amd64.tar.gz && \
+    wget -O /usr/local/bin/netatmo https://raw.githubusercontent.com/benningm/docker-telegraf-netatmo/master/netatmo && \
     gpg --batch --verify telegraf-${TELEGRAF_VERSION}-static_linux_amd64.tar.gz.asc telegraf-${TELEGRAF_VERSION}-static_linux_amd64.tar.gz && \
     mkdir -p /usr/src /etc/telegraf /config && \
     tar -C /usr/src -xzf telegraf-${TELEGRAF_VERSION}-static_linux_amd64.tar.gz && \
@@ -28,6 +29,7 @@ RUN set -ex && \
     rm -rf *.tar.gz* /usr/src /root/.gnupg && \
     apk del .build-deps
 
+https://raw.githubusercontent.com/benningm/docker-telegraf-netatmo/master/netatmo
 
 COPY telegraf_custom.conf /config/
 
