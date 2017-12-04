@@ -23,8 +23,8 @@ RUN set -ex && \
     gpg --batch --verify telegraf-${TELEGRAF_VERSION}-static_linux_amd64.tar.gz.asc telegraf-${TELEGRAF_VERSION}-static_linux_amd64.tar.gz && \
     mkdir -p /usr/src /etc/telegraf /config && \
     tar -C /usr/src -xzf telegraf-${TELEGRAF_VERSION}-static_linux_amd64.tar.gz && \
-    mv /usr/src/telegraf*/telegraf.conf /etc/telegraf/ && \
-    chmod +x /usr/src/telegraf*/* /entrypoint.sh && \
+    mv /usr/src/telegraf*/telegraf.conf /etc/telegraf/  && \
+    chmod +x /usr/src/telegraf*/* /entrypoint.sh /usr/local/bin/netatmo && \
     cp -a /usr/src/telegraf*/* /usr/bin/ && \
     rm -rf *.tar.gz* /usr/src /root/.gnupg && \
     apk del .build-deps
