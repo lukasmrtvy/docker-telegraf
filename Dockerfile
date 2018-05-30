@@ -36,7 +36,7 @@ VOLUME /config/
 EXPOSE 8125/udp 8092/udp 8094
 
 LABEL version=${TELEGRAF_VERSION}
-LABEL url=https://api.github.com/repos/influxdata/telegraf/releases/latest
+LABEL url=https://github.com/repos/influxdata/telegraf/
 
 ENTRYPOINT ["/entrypoint.sh"]
 
