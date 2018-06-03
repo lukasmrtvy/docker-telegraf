@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.7
 
 RUN echo 'hosts: files dns' >> /etc/nsswitch.conf
 RUN apk add --no-cache iputils lm_sensors tzdata ca-certificates net-snmp-tools && \
